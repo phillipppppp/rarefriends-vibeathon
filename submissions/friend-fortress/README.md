@@ -2,7 +2,9 @@
 
 Your Friend guards a crystal node from waves of glitches — not as a sprite in the scene, but as the weapon. It fires automatically at anything in range, so where you stand is the whole skill.
 
-**Builder:** [@phillipppppp](https://github.com/phillipppppp) · **Category:** Character Spotlight · **SDK:** FriendSDK v0.1.2
+**Builder:** [@phillipppppp](https://github.com/phillipppppp) · **Category:** Token Activity · **SDK:** FriendSDK v0.1.2
+
+Every run spends Power Cells — one to start, one per roll banked — and runs are short and repeatable by design, so the token leaves circulation continuously rather than once.
 
 [**Playable preview**](https://phillipppppp.github.io/rarefriends-fortress/) · [Source code](https://github.com/phillipppppp/rarefriends-fortress) · [Full documentation](https://github.com/phillipppppp/rarefriends-fortress#readme)
 
@@ -21,7 +23,9 @@ Or open the [playable preview](https://phillipppppp.github.io/rarefriends-fortre
 
 ## Play
 
-Walk with **WASD**, arrow keys, or tap a destination. Press **E** near a station. During a run, tap **Build** and then tap open ground near the node to place a turret.
+Walk with **WASD**, arrow keys, or tap anywhere on the ground. Stand near a station and an **Enter** button appears in the HUD; **E** does the same. During a run, tap **Build** and then tap open ground near the node to place a turret.
+
+Stations deliberately have no floating label over the world: the SDK prompt is sized in CSS pixels while the world canvas scales down, so on a phone one prompt covers roughly 300x85 canvas pixels and swallows the taps that are the only way to walk. Keeping the action in the HUD leaves the whole canvas tappable, which is verified at 390px and 960px.
 
 1. **Buy a Power Cell** at the Generator, 1 RF each.
 2. **Start a defence run** at the Node.
@@ -61,6 +65,6 @@ The simulation also revealed combat was fully deterministic, every wave identica
 
 `npx tsc -p game/tsconfig.json`, `friendsdk check`, `friendsdk test`, a headless difficulty simulation and an end-to-end run all pass. The end-to-end test drives the real sandboxed runtime: it buys Power Cells, starts a run, confirms enemies spawn and the overlay actually paints, waits for the bank-or-push choice, then banks and settles the rolls through `play`/`settle`. Both are in [`tools/`](https://github.com/phillipppppp/rarefriends-fortress/tree/main/tools) and runnable. Automated checks use the SDK fixture identity; a real-wallet playthrough of this game is still outstanding.
 
-**This is the first playable milestone**, submitted early and deliberately small: one enemy type carries waves 1–3 with tougher kinds from wave 4, one turret type is buildable, and upgrades exist in the model but are not yet exposed. Run progress does not survive a reload, since the SDK preview ledger is in memory. A station prompt sitting under the cursor swallows a click aimed at the ground, so walk with the keyboard if one is in the way. **The game does not load inside MetaMask's in-app mobile browser** — the SDK renders games in `<iframe sandbox="allow-scripts">` and the bridge handshake does not complete there, though it works in Chromium and WebKit at desktop and phone viewports, so it is that app's webview rather than the engine, and it affects every FriendSDK game equally. Desktop with a browser-extension wallet works.
+**This is the first playable milestone**, submitted early and deliberately small: one enemy type carries waves 1–3 with tougher kinds from wave 4, one turret type is buildable, and upgrades exist in the model but are not yet exposed. Run progress does not survive a reload, since the SDK preview ledger is in memory. **The game does not load inside MetaMask's in-app mobile browser** — the SDK renders games in `<iframe sandbox="allow-scripts">` and the bridge handshake does not complete there, though it works in Chromium and WebKit at desktop and phone viewports, so it is that app's webview rather than the engine, and it affects every FriendSDK game equally. Desktop with a browser-extension wallet works.
 
 Wallet connection, NFT ownership verification and Friend selection are handled entirely by the SDK runtime and are not reimplemented in game code. World scenery, character sprites and the sound kit are the SDK's; combat simulation, economy, overlay renderer, wave design and the bank-or-push structure are original to this submission. No live economy, trading or creator fees are included. Production publication would need separate Rare Friends review.
