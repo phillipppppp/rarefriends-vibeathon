@@ -23,7 +23,9 @@ Or just open the [playable preview](https://phillipppppp.github.io/rarefriends-a
 
 ## Play
 
-Walk with **WASD**, arrow keys, or tap a destination. Press **E** near a station, or tap its prompt. An on-screen objective always names the next useful action.
+Walk with **WASD**, the arrow keys, or by tapping anywhere on the ground. Stand at a station and an **Enter** button appears in the HUD; **E** does the same. An on-screen objective always names the next useful action.
+
+Stations have no floating label over the world: the SDK prompt is sized in CSS pixels while the world canvas scales down, so at phone width an enabled prompt made about a third of the play area untappable, and tapping is the only way to walk on a phone. Proximity is detected from the live Friend position and the action lives in the HUD instead. Verified at 390px and 960px.
 
 | Station | What it does |
 |---|---|
