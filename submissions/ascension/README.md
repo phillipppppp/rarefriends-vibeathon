@@ -23,7 +23,14 @@ Or just open the [playable preview](https://phillipppppp.github.io/rarefriends-a
 
 ## Play
 
-Walk with **WASD**, the arrow keys, or by tapping anywhere on the ground. Stand at a station and an **Enter** button appears in the HUD; **E** does the same. An on-screen objective always names the next useful action.
+| | Keyboard | Touch |
+|---|---|---|
+| Move | WASD or arrow keys | Tap the ground |
+| Enter a station | Press **E** when near | Tap the station |
+| Close a panel | **Esc**, one layer at a time | The **X** on the panel |
+| How to Play | **?** in the HUD | **?** in the HUD |
+
+A **How to Play** card opens on load, before anything else: four lines covering the loop and the redeem / commit / keep choice, naming taps on a phone and keys on a desktop. It closes with **Got it**, the **X** or **Escape**, and the **?** in the HUD reopens it. An on-screen objective always names the next useful action.
 
 Stations have no floating label over the world: the SDK prompt is sized in CSS pixels while the world canvas scales down, so at phone width an enabled prompt made about a third of the play area untappable, and tapping is the only way to walk on a phone. Proximity is detected from the live Friend position and the action lives in the HUD instead. Verified at 390px and 960px.
 
@@ -61,9 +68,9 @@ The selected NFT is the character, not a portrait: its token id seeds a chassis 
 
 ## Checks, credits and limitations
 
-Thirteen suites, all passing: typecheck, `friendsdk check`, `friendsdk test`, save-code units, and seven end-to-end suites driven through the real sandboxed runtime — the full loop, forced miss and jackpot outcomes, click-spam race safety, showcase mode, the objective, a randomised invariant fuzz test — plus keyboard, contrast, control, tap and Escape audits.
+**Fourteen suites, all passing:** typecheck, `friendsdk check`, `friendsdk test`, save-code units, and seven end-to-end suites driven through the real sandboxed runtime — the full loop, forced miss and jackpot outcomes, click-spam race safety, showcase mode, the objective, a randomised invariant fuzz test — plus keyboard, contrast, control, tap, Escape and How to Play audits. UI suites run at both 390px and 960px.
 
-**Escape** closes whatever is open, one layer at a time, and does nothing when nothing is open. It deliberately leaves the SDK's own purchase confirmation alone, since that dialog belongs to the host, and every panel keeps its own close control so touch is never left without a way out. All are in [`tools/`](https://github.com/phillipppppp/rarefriends-ascension/tree/main/tools) and runnable. Automated checks use the SDK fixture identity, so the game has additionally been played end to end with a real browser wallet and a hardwired Generations NFT on Robinhood mainnet (4663): the Friend is discovered and selected, the ownership gate passes, and buying, fabricating and committing all work.
+**Escape** closes only the topmost layer and does nothing when nothing is open; it leaves the SDK's own purchase confirmation alone, since that dialog belongs to the host, and every panel keeps its own close control so touch is never left without a way out. All are in [`tools/`](https://github.com/phillipppppp/rarefriends-ascension/tree/main/tools) and runnable. Automated checks use the SDK fixture identity, so the game has additionally been played end to end with a real browser wallet and a hardwired Generations NFT on Robinhood mainnet (4663): the Friend is discovered and selected, the ownership gate passes, and buying, fabricating and committing all work.
 
 Known limitations, in full: held components do not survive a reload, since the SDK's preview ledger is in memory — rank and wearables do, via a checksummed save code bound to the token id, which is tamper-evident but not tamper-proof. Ascendant is out of reach in a single demo session by design, hence the showcase. **The game does not load inside MetaMask's in-app mobile browser**; the SDK renders games in `<iframe sandbox="allow-scripts">` and the bridge handshake does not complete there, though it works in both Chromium and WebKit at desktop and phone viewports, so it is that app's webview rather than the engine, and it affects every FriendSDK game equally. Desktop with a browser-extension wallet works.
 
