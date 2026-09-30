@@ -2,7 +2,9 @@
 
 Your Friend works an orbital station, and every component it fabricates forces one irreversible choice: cash it out, ascend with it, or wear it.
 
-**Builder:** [@phillipppppp](https://github.com/phillipppppp) · **Category:** Economy Potential · **SDK:** FriendSDK v0.1.2
+**Category:** Economy Potential · **SDK:** FriendSDK v0.1.2
+
+**Builder:** Deez (GitHub: [@phillipppppp](https://github.com/phillipppppp)) · **Contact:** X [@deeznuts_ron](https://x.com/deeznuts_ron) · Telegram [@deeznuts_ron](https://t.me/deeznuts_ron)
 
 [**Playable preview**](https://phillipppppp.github.io/rarefriends-ascension/) · [Source code](https://github.com/phillipppppp/rarefriends-ascension) · [Full documentation](https://github.com/phillipppppp/rarefriends-ascension#readme)
 
